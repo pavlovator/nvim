@@ -51,7 +51,7 @@ vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 -- grep in filesystem the ripgrep has to be install for live grep to be actually usable sudo apt install ripgrep
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 -- see filesystem
-vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>', {})
+vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal right<CR>', {})
 
 local config = require("nvim-treesitter.configs")
 config.setup({
