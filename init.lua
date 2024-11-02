@@ -1,12 +1,3 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set number")
-vim.cmd("set relativenumber")
-
-vim.g.mapleader = " "
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -24,40 +15,5 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  { "rebelot/kanagawa.nvim", lazy = true },
-  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    }
-  }   
-}
-
+require("vim-options")
 require("lazy").setup("plugins")
-
-local builtin = require("telescope.builtin")
--- search in filesystem
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
--- grep in filesystem the ripgrep has to be install for live grep to be actually usable sudo apt install ripgrep
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
--- see filesystem
-vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal right<CR>', {})
-
-local config = require("nvim-treesitter.configs")
-config.setup({
-  ensure_installed = {"lua"},
-  highlight = { enable = true },
-  indent = { enable = true},
-})
-
-vim.cmd("colorscheme kanagawa")
