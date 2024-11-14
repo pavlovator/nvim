@@ -10,7 +10,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       config = function()
         require("mason-lspconfig").setup({
-          ensure_installed = {"lua_ls"}
+          ensure_installed = {"lua_ls", "rust_analyzer", "clangd"}
         })
       end
     },
@@ -19,6 +19,8 @@ return {
       config = function()
         local lspconfig = require("lspconfig")
         lspconfig.lua_ls.setup({})
+        lspconfig.rust_analyzer.setup({})
+        lspconfig.clangd.setup({})
         -- shift + k shows a documentation of function in lua
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
         -- tieto bindings fakt neviem na co by som pouzival

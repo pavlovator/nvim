@@ -5,6 +5,11 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 
-vim.g.mapleader = " "
+-- Set indentation options for all C++ files
+vim.cmd [[
+  autocmd FileType cpp,cppreact setlocal shiftwidth=4 tabstop=4 expandtab
+]]
 
+vim.g.mapleader = " "
+vim.opt.clipboard:append("unnamedplus")
 
